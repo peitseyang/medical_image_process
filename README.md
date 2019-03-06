@@ -23,7 +23,9 @@ print(img)
 
 ### Linear conversion
 
-The following two properties specify a linear conversion 
+1. The following two properties specify a linear conversion
+
+2. Each pair represent a brightness parameter to it's dicom file
 
 ```
 (0028, 1050) Window Center                       DS: ['8408', '8443', '8408', '8497', '8443']
