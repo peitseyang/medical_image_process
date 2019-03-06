@@ -4,27 +4,26 @@ My Senior Course
 
 ## Data Preprocess
 
-Doing Data Preprocessing
+### Require medical data (dicom file) 
 
-### Task 
+1. put the dicom file in src/data/raw_data
 
-1. Require medical data (dicom file)
-    - put the dicom file in src/data/raw_data
+2. the output will be reposit at src/data/process_data
 
-    - the output will be reposit at src/data/process_data
+### Dicom file standard
 
-2. Dicom file standard
-    - (0028, xxxx) is all the information about the dicom image
+1. (0028, xxxx) is all the information about the dicom image
 
-    - it can be show by the following code
+2. it can be show by the following code
 
 ```
 img = pydicom.dcmread(path)
 print(img)
 ```
 
-3. Linear conversion
-    - The following two properties specify a linear conversion 
+### Linear conversion
+
+The following two properties specify a linear conversion 
 
 ```
 (0028, 1050) Window Center                       DS: ['8408', '8443', '8408', '8497', '8443']
