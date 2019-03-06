@@ -35,13 +35,12 @@ for dicom_file in all_dicom_file:
     destination = os.path.join(OUTPUT_FOLDER, dicom_file + '.png')
 
     ds = pydicom.dcmread(path)
-    print(ds)
+    # print(ds)
     
     data = ds.pixel_array
     scaled_img = cv2.convertScaleAbs(data-ds.WindowCenter[0], alpha=(255.0 /ds.WindowWidth[0]))
     scaled_img = 255 - scaled_img
     cv2.imwrite(destination, scaled_img)
-    break
         
 print('success')
 done = True

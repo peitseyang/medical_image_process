@@ -11,6 +11,8 @@ Doing Data Preprocessing
 1. Require medical data (dicom file)
     - put the dicom file in src/data/raw_data
 
+    - the output will be reposit at src/data/process_data
+
 2. Dicom file standard
     - (0028, xxxx) is all the information about the dicom image
 
@@ -21,7 +23,7 @@ img = pydicom.dcmread(path)
 print(img)
 ```
 
-3. Linear Conversion
+3. Linear conversion
     - The following two properties specify a linear conversion 
 
 ```
@@ -29,4 +31,4 @@ print(img)
 (0028, 1051) Window Width                        DS: ['1608', '1787', '1608', '1965', '1787']
 ```
 [moreInfo1](https://dicom.innolitics.com/ciods/digital-x-ray-image/dx-image/00281055)
-[moreInfo2](https://gist.github.com/PurpleBooth/b24679402957c63ec426)
+[moreInfo2](https://gist.github.com/PurpleBooth/b24679402957c63ec426) about Window Center & Window Width
