@@ -8,6 +8,8 @@ import png
 import pydicom
 import matplotlib.pyplot as plt
 import os
+import cv2
+from PIL import Image
 
 done = False
 def animate():
@@ -25,7 +27,6 @@ t.start()
 INPUT_FOLDER = './raw_data/'
 OUTPUT_FOLDER = './process_data/'
 all_dicom_file = os.listdir(INPUT_FOLDER)
-# print(all_dicom_file)
 all_dicom_file.remove('.DS_Store')
 
 print('converting dicom file...')
@@ -34,24 +35,13 @@ for dicom_file in all_dicom_file:
     destination = os.path.join(OUTPUT_FOLDER, dicom_file + '.png')
 
     ds = pydicom.dcmread(path)
+    print(ds)
+    
     data = ds.pixel_array
-    plt.imshow(data)
-
-    shape = data.shape
-
-    # Convert to float to avoid overflow or underflow losses.
-    image_2d = data.astype(float)
-
-    # Rescaling grey scale between 0-255
-    image_2d_scaled = (np.maximum(image_2d,0) / image_2d.max()) * 255.0
-
-    # Convert to uint
-    image_2d_scaled = np.uint8(image_2d_scaled)
-
-    # Write the PNG file
-    with open(destination, 'wb') as png_file:
-        w = png.Writer(shape[1], shape[0], greyscale=True)
-        w.write(png_file, image_2d_scaled)
+    scaled_img = cv2.convertScaleAbs(data-ds.WindowCenter[0], alpha=(255.0 /ds.WindowWidth[0]))
+    scaled_img = 255 - scaled_img
+    cv2.imwrite(destination, scaled_img)
+    break
         
 print('success')
 done = True
