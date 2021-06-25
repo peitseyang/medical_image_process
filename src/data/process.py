@@ -11,7 +11,6 @@ import os
 import cv2
 from PIL import Image
 
-
 done = False
 def animate():
     for c in itertools.cycle(['⠋', '⠙', '⠹', '⠸', '⠴', '⠦', '⠧', '⠇', '⠏']):
